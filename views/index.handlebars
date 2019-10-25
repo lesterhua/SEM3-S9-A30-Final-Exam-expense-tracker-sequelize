@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row mt-5  justify-content-end">
+    {{!-- 月份 --}}
+    <div class="dropdown mr-3">
+      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        月份
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+    {{!-- 類別 --}}
+    <div class="col-3">
+      <div class="dropdown">
+        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          類別
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- 金額 --}}
+  <div class="row justify-content-start">
+    <div class="col-3" style="margin: auto 0;">
+      <p class="lead">總金額</p>
+    </div>
+    <div class="col-auto">
+      <h1 class="text-danger">$ {{{this.totalAmount}}}</h1>
+    </div>
+  </div>
+
+  {{!-- 支出明細 --}}
+  <div class="row mt-5">
+    <div class="card card-body">
+      <ul class="list-group">
+        {{#each records}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-2 mr-2" style="font-size: 15px;
+    color: #318df1;">
+              {{#switch this.category}}
+              {{#case '家居物業'}}<i class="fas fa-home fa-5x"></i>{{/case}}
+              {{#case '交通出行'}}<i class="fas fa-subway fa-5x"></i>{{/case}}
+              {{#case '休閒娛樂'}}<i class="fas fa-shopping-bag fa-5x"></i>{{/case}}
+              {{#case '餐飲食品'}}<i class="fas fa-utensils fa-5x"></i>{{/case}}
+              {{#case '其它'}}<i class="fas fa-edit fa-5x"></i>{{/case}}
+              {{/switch}}
+            </div>
+            <div class="col-sm-3 mx-auto">
+              <p class="font-italic font-weight-bold">{{this.name}}</p>
+              <p class="font-italic font-weight-bold">{{this.dateTime}}</p>
+            </div>
+            <div class="col-sm-auto mx-auto">
+              <p class="text-monospace">{{this.amount}}</p>
+            </div>
+            <div class="col-sm-auto">
+              <a href="/records/{{this.id}}/edit" class="btn btn-info mr-2">修改</a>
+              <form action="/records/{{this.id}}/delete" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">刪除</button>
+              </form>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <a href="/records/new" class="btn btn-outline-primary btn-block mt-5 mb-5">新增</a>
+</div>
