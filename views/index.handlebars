@@ -63,8 +63,8 @@
               <p class="text-monospace">{{this.amount}}</p>
             </div>
             <div class="col-sm-auto">
-              <a href="/records/{{this.id}}/edit" class="btn btn-info mr-2">修改</a>
-              <form action="/records/{{this.id}}/delete" method="POST" class="d-inline">
+              <a href="/records/{{this.id}}/edit?_method=PUT" class="btn btn-info mr-2">修改</a>
+              <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" class="d-inline">
                 <button type="submit" class="btn btn-danger">刪除</button>
               </form>
             </div>

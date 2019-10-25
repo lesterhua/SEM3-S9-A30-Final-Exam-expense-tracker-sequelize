@@ -63,7 +63,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 })
 
 // edit action
-router.post('/:id/edit', authenticated, (req, res) => {
+router.put('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ where: { id: req.params.id, UserId: req.user.id } }).then((record) => {
     console.log(req.body)
     record.name = req.body.name,
@@ -81,7 +81,7 @@ router.post('/:id/edit', authenticated, (req, res) => {
 })
 
 // delete
-router.post('/:id/delete', authenticated, (req, res) => {
+router.delete('/:id/delete', authenticated, (req, res) => {
   Record.findOne({ where: { id: req.params.id, UserId: req.user.id } }).then((record) => {
     record.destroy({ where: { id: req.params.id, UserId: req.user.id } }).then((record) => {
       return res.redirect('/')
