@@ -27,8 +27,11 @@ app.use(passport.session())
 require('./config/passport')
 app.use((req, res, next) => {
   res.locals.user = req.user
+  res.locals.auth = req.isAuthenticated()
+  // console.log("isAuthenticated", res.locals.isAuthenticated)
   next()
 })
+
 
 
 app.use('/', require('./routes/home'))
