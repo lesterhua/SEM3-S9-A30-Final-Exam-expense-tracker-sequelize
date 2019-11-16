@@ -7,9 +7,10 @@
         月份
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        {{#each months}}
+        <a href="/?months={{this.month}}&categorys={{../category}}" class="dropdown-item"
+          aria-labelledby="months">{{this.name}}</a>
+        {{/each}}
       </div>
     </div>
     {{!-- 類別 --}}
@@ -20,9 +21,9 @@
           類別
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          {{#each categorys}}
+          <a href="/?categorys={{this.category}}&months={{../month}}" class="dropdown-item">{{this.name}}</a>
+          {{/each}}
         </div>
       </div>
     </div>
