@@ -10,6 +10,7 @@ const bodyParse = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 require('./handlebars-helpers')
 
@@ -21,6 +22,7 @@ app.set('view engine', 'handlebars')
 
 app.use(bodyParse.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(flash())
 
 app.use(session({
   secret: 'sfefewg',
@@ -34,6 +36,8 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.auth = req.isAuthenticated()
   // console.log("isAuthenticated", res.locals.isAuthenticated)
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
